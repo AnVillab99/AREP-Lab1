@@ -13,7 +13,7 @@ import java.util.ListIterator;
 /**
  * LinkedList
  */
-public class LinkedList<T> implements List<T> {
+public class LinkedList<T>  {
     private Node<T> head;
     private Node<T> tail;
     private int size;
@@ -44,137 +44,131 @@ public class LinkedList<T> implements List<T> {
 
     public void add(int index, T data) {
 
-        Node<T> Iprev = get(index-1);
-        Node<T> Inext = get(index);
-		Node<T> n = new Node<T> (data, Inext,Iprev );
-		size++;
-	}
-
-    public boolean addAll(Collection c) {
-        // TODO Auto-generated method stub
-        return false;
+        Node<T> Iprev = getNode(index-1);
+        Node<T> Inext = getNode(index);
+        Node<T> n = new Node<T> (data, Inext,Iprev );
+        Iprev.setNext(n);
+        Inext.setPrev(n);
+        size++;
     }
-
-    public boolean addAll(int index, Collection c) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
     public void clear() {
-        // TODO Auto-generated method stub
+        head=null;
+        tail=null;
 
     }
 
-    public boolean contains(Object o) {
-        // TODO Auto-generated method stub
+    public boolean contains(T data) {
+        Node<T>sHead =head;
+        while(sHead.getNext()!=null){
+            if(sHead.getNext().getValue().equals(data)){
+                return true;
+            }
+            else sHead=sHead.getNext();
+
+        }
         return false;
     }
 
-    public boolean containsAll(Collection c) {
-        // TODO Auto-generated method stub
-        return false;
+
+    public T get(int index) {
+        if (index >= size || index<0){
+            return null;
+        }
+        else{
+            Node<T> retornar = getNode(index);
+            return retornar.getValue();
+        }
     }
 
-    public Node<T> get(int index) {
-        if (index < size) {
+    private Node<T> getNode(int index){    
             int m = size / 2;
             int it;
-            Node<T> F = null;
+            Node<T> F ;
 
             if (index <= m) {                
                 F = head;
-                for (it=0;it <index; it++) {
-                    F = F.getNext();                   
+                it=0;
+                while(it<index) {
+                    F = F.getNext();
+                    it++;                   
                 }
 
-            } else {                
+            } else {   
+                it=size-1;           
                 F = tail;
-                for (it=size-1;it >index; it--) {
-                    F = F.getPrev();                   
+                while(it>index) {
+                    F = F.getPrev();  
+                    it--;                 
                 }
 
                 
             }
             return F;
 
-        } else {
-            return null;
-        }
     }
 
-    public int indexOf(Object o) {
-        // TODO Auto-generated method stub
-        return 0;
+    public int indexOf(T data) {
+        Node<T>sHead =head;
+        int index =0;
+        while(sHead.getNext()!=null){
+            if(sHead.getValue().equals(data)){
+                return index;
+            }
+            else sHead=sHead.getNext();
+            index++;
+
+        }
+        return -1;
+        
     }
 
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
+        if (size!=0){
+                    return false;
+        }
+        else return true;
+    }
+
+
+    public boolean remove(T data) {
+        int exist = indexOf(data);
+        if(exist==(-1)){
+            Node<T> Iprev = getNode(exist).getPrev();
+            Node<T> Inext = getNode(exist).getNext();
+            Node<T> n = getNode(exist);
+            Iprev.setNext(Inext);
+            Inext.setPrev(Iprev);
+            n=null;
+            return true;
+
+
+        }
         return false;
     }
 
-    public Iterator iterator() {
-        // TODO Auto-generated method stub
+    public T remove(int index) {
+        
+        if(index<size && index>-1){
+            Node<T> Iprev = getNode(index).getPrev();
+            Node<T> Inext = getNode(index).getNext();
+            Node<T> n = getNode(index);
+            Iprev.setNext(Inext);
+            Inext.setPrev(Iprev);
+            Node<T> deleted = n;
+            n=null;
+            
+            return deleted.getValue();
+
+
+        }
         return null;
     }
 
-    public int lastIndexOf(Object o) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    public ListIterator listIterator() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public ListIterator listIterator(int index) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public boolean remove(Object o) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    public Object remove(int index) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public boolean removeAll(Collection c) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    public boolean retainAll(Collection c) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    public Object set(int index, Object element) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return size;
     }
 
-    public List subList(int fromIndex, int toIndex) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
-    public Object[] toArray() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    public Object[] toArray(Object[] a) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
 }

@@ -5,9 +5,9 @@ package edu.escuelaing.arem.ASE.app;
  */
 public class Node<T> {
     public T value;
-    public Node next, prev ;
+    public Node<T> next, prev ;
 
-    public Node( T v, Node next, Node prev) {
+    public Node( T v, Node<T> next, Node<T> prev) {
         value = v;
         this.next = next;
         this.prev = prev;
@@ -22,23 +22,29 @@ public class Node<T> {
         this.value = value;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 
-    public Node getPrev() {
+    public Node<T> getPrev() {
         return prev;
     }
 
-    public void setPrev(Node prev) {
+    public void setPrev(Node<T> prev) {
         this.prev = prev;
     }
 
-  
-   
+    public Node<T> next(){
+        return next;
+    }
+
+    public Node<T> prev(){
+        return prev;
+    }
+
 
 }

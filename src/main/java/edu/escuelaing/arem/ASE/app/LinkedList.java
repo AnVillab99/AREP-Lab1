@@ -1,14 +1,6 @@
 package edu.escuelaing.arem.ASE.app;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.AbstractSequentialList;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Deque;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+
 
 /**
  * LinkedList
@@ -138,6 +130,7 @@ public class LinkedList<T>  {
             Node<T> n = getNode(exist);
             Iprev.setNext(Inext);
             Inext.setPrev(Iprev);
+            n.delete();
             n=null;
             return true;
 

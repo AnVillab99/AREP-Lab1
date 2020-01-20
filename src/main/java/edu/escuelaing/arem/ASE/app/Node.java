@@ -46,5 +46,11 @@ public class Node<T> {
         return prev;
     }
 
+    public void delete(){
+        next=null;
+        value=null;
+        prev=null;
+    }
+
 
 }

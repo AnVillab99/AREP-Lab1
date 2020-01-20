@@ -13,6 +13,12 @@ public class Node<T> {
         this.prev = prev;
         
     }
+    public Node( T v) {
+        value = v;
+        this.next = null;
+        this.prev = null;
+        
+    }
 
     public T getValue() {
         return value;

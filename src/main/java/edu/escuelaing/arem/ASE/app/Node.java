@@ -42,8 +42,8 @@ public class Node<T> {
         return prev;
     }
 
-    public void setPrev(Node<T> prev) {
-        this.prev = prev;
+    public void setPrev(Node<T> prior) {
+        this.prev = prior;
     }
 
     public Node<T> next() {

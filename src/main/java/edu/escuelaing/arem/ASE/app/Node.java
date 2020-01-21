@@ -1,23 +1,25 @@
 package edu.escuelaing.arem.ASE.app;
 
+
 /**
  * Node
  */
 public class Node<T> {
     public T value;
-    public Node<T> next, prev ;
+    public Node<T> next, prev;
 
-    public Node( T v, Node<T> next, Node<T> prev) {
+    public Node(T v, Node<T> next, Node<T> prev) {
         value = v;
         this.next = next;
         this.prev = prev;
-        
+
     }
-    public Node( T v) {
+
+    public Node(T v) {
         value = v;
         this.next = null;
         this.prev = null;
-        
+
     }
 
     public T getValue() {
@@ -44,19 +46,26 @@ public class Node<T> {
         this.prev = prev;
     }
 
-    public Node<T> next(){
+    public Node<T> next() {
         return next;
     }
 
-    public Node<T> prev(){
+    public Node<T> prev() {
         return prev;
     }
 
-    public void delete(){
-        next=null;
-        value=null;
-        prev=null;
+    public void delete() {
+        next = null;
+        value = null;
+        prev = null;
     }
 
+    public boolean equals(Node<T> comp){
+        if(this.value.equals(comp.getValue())){
+            return true;
+        }
+        return false;
+
+    }
 
 }

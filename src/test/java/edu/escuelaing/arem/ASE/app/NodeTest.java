@@ -43,8 +43,7 @@ public class NodeTest {
 	@Test
 	public void testSetNext() {
 		Node<Double> n1 = new Node<Double> (2.3);
-		Node<Double> n2 = new Node<Double> (2.3);
-		Node<Double> n = new Node<Double> (2.3,null,null);
+		Node<Double> n = new Node<Double> (2.2,null,null);
 		n.setNext(n1);		
 		assertTrue(n.getNext().equals(n1));
 	}
@@ -52,16 +51,15 @@ public class NodeTest {
 	@Test
 	public void testGetPrev() {
 		Node<Double> n1 = new Node<Double> (2.3);
-		Node<Double> n2 = new Node<Double> (2.3);
-		Node<Double> n = new Node<Double> (2.3,n1,n2);		
+		Node<Double> n2 = new Node<Double> (2.1);
+		Node<Double> n = new Node<Double> (2.2,n1,n2);		
 		assertTrue(n.getPrev().equals(n2));
 	}
 
 	@Test
 	public void testSetPrev() {
-		Node<Double> n1 = new Node<Double> (2.3);
 		Node<Double> n2 = new Node<Double> (2.3);
-		Node<Double> n = new Node<Double> (2.3,null,null);
+		Node<Double> n = new Node<Double> (2.2,null,null);
 		n.setPrev(n2);		
 		assertTrue(n.getPrev().equals(n2));
 	}
@@ -69,24 +67,24 @@ public class NodeTest {
 	@Test
 	public void testNext() {
 		Node<Double> n1 = new Node<Double> (2.3);
-		Node<Double> n2 = new Node<Double> (2.3);
-		Node<Double> n = new Node<Double> (2.3,n1,n2);		
+		Node<Double> n2 = new Node<Double> (2.1);
+		Node<Double> n = new Node<Double> (2.2,n1,n2);		
 		assertTrue(n.getNext().equals(n1));
 	}
 
 	@Test
 	public void testPrev() {
 		Node<Double> n1 = new Node<Double> (2.3);
-		Node<Double> n2 = new Node<Double> (2.3);
-		Node<Double> n = new Node<Double> (2.3,n1,n2);		
+		Node<Double> n2 = new Node<Double> (2.1);
+		Node<Double> n = new Node<Double> (2.2,n1,n2);		
 		assertTrue(n.getPrev().equals(n2));
 	}
 
 	@Test
 	public void testDelete() {
 		Node<Double> n1 = new Node<Double> (2.3);
-		Node<Double> n2 = new Node<Double> (2.3);
-		Node<Double> n = new Node<Double> (2.3,n1,n2);
+		Node<Double> n2 = new Node<Double> (2.1);
+		Node<Double> n = new Node<Double> (2.2,n1,n2);
 		n.delete();
 		assertTrue(n.getNext()==null && n.getPrev()==null &&
 		n.getValue()==null);

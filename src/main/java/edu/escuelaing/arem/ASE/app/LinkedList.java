@@ -163,5 +163,27 @@ public class LinkedList<T>  {
     }
 
 
+    public void removeHead(){
+
+
+        Node <T> nHead = head.getNext();
+        nHead.setPrev(null);
+        head.delete();
+        head=null;
+        head=nHead;
+
+        
+
+    }
+    public void removeTail(){
+        Node <T> nTail = tail.getPrev();
+        nTail.setNext(null);
+        tail.delete();
+        tail=null;
+        tail=nTail;
+
+
+    }
+
 
 }

@@ -1,9 +1,8 @@
 package edu.escuelaing.arem.ASE.app;
 
-
 /**
- * Node
- * Node class. An object which holds it's next and previous Nodes and holds a value
+ * Node Node class. An object which holds it's next and previous Nodes and holds
+ * a value
  */
 public class Node<T> {
     public T value;
@@ -12,13 +11,14 @@ public class Node<T> {
     /**
      * Empty constructor
      */
-    public Node(){
+    public Node() {
 
     }
 
     /**
      * Node constructor
-     * @param v main value of the node
+     * 
+     * @param v    main value of the node
      * @param next next Node
      * @param prev previous node
      */
@@ -28,8 +28,10 @@ public class Node<T> {
         this.prev = prev;
 
     }
+
     /**
      * Node constructor, set next and previous nodes as null
+     * 
      * @param v main node value
      */
     public Node(T v) {
@@ -41,14 +43,16 @@ public class Node<T> {
 
     /**
      * Returns the main value of the node
+     * 
      * @return
      */
     public T getValue() {
         return value;
     }
-    
+
     /**
      * Sets the main value of the node
+     * 
      * @param value the new value of the node
      */
     public void setValue(T value) {
@@ -57,14 +61,16 @@ public class Node<T> {
 
     /**
      * Returns the next nodes
-     * @return The next node 
+     * 
+     * @return The next node
      */
     public Node<T> getNext() {
         return next;
     }
 
     /**
-     * Sets the next node 
+     * Sets the next node
+     * 
      * @param next the new next node
      */
     public void setNext(Node<T> next) {
@@ -72,7 +78,8 @@ public class Node<T> {
     }
 
     /**
-     * Returns the prior node 
+     * Returns the prior node
+     * 
      * @return the prior node
      */
     public Node<T> getPrev() {
@@ -81,6 +88,7 @@ public class Node<T> {
 
     /**
      * Sets the prior node
+     * 
      * @param prior the new prior node
      */
     public void setPrev(Node<T> prior) {
@@ -89,14 +97,16 @@ public class Node<T> {
 
     /**
      * Returns the next nodes
-     * @return The next node 
+     * 
+     * @return The next node
      */
     public Node<T> next() {
         return next;
     }
 
     /**
-     * Returns the prior node 
+     * Returns the prior node
+     * 
      * @return the prior node
      */
     public Node<T> prev() {
@@ -114,11 +124,12 @@ public class Node<T> {
 
     /**
      * Compares the values of two nodes
+     * 
      * @param comp the other node to compare
      * @return boolean that says if the values are equal
      */
-    public boolean equals(Node<T> comp){
-        if(this.value.equals(comp.getValue())){
+    public boolean equals(Node<T> comp) {
+        if (this.value.equals(comp.getValue())) {
             return true;
         }
         return false;

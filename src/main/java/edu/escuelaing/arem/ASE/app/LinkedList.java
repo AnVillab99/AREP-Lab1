@@ -1,7 +1,6 @@
 package edu.escuelaing.arem.ASE.app;
 
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * 
@@ -71,7 +70,8 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param data T elemtn to add
      * @return boolean indicating if it was added
-     * @throws Exception if the data type added doesn't match with the linkedlist data type
+     * @throws Exception if the data type added doesn't match with the linkedlist
+     *                   data type
      */
     public boolean add(T data) throws Exception {
 
@@ -102,7 +102,8 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param index poscision where to add the data
      * @param data  T to be added
-     * @throws Exception if the data type added doesn't match with the linkedlist data type
+     * @throws Exception if the data type added doesn't match with the linkedlist
+     *                   data type
      */
     public void add(int index, T data) throws Exception {
         if (!(index < 0 || index >= size || type == data.getClass().getName())) {
@@ -120,9 +121,11 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method adds to the linkedlist elements of an T data array
+     * 
      * @param dat T data array
      * @return boolean indicating if the array was added
-     * @throws Exception if the data type added doesn't match with the linkedlist data type
+     * @throws Exception if the data type added doesn't match with the linkedlist
+     *                   data type
      */
     public boolean addAll(T[] dat) throws Exception {
         if (type == dat.getClass().getName()) {
@@ -147,12 +150,12 @@ public class LinkedList<T> implements Iterable<T> {
 
             size = s;
             return true;
-        }
-        else  throw new Exception("Data type is not compatible with curretn LinkedList");
+        } else
+            throw new Exception("Data type is not compatible with curretn LinkedList");
     }
 
     /**
-     *  Method clears the linked list
+     * Method clears the linked list
      */
     public void clear() {
         head = null;
@@ -163,7 +166,8 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * Methos that search for an specific value on the linkedlist  
+     * Methos that search for an specific value on the linkedlist
+     * 
      * @param data Value to search on the linkedlist
      * @return boolean indicating if the value is present on the linkedlist
      */
@@ -187,6 +191,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * method returns an specific value based on an index
+     * 
      * @param index int that indicates which value to return
      * @return T or null if the index is wrong
      */
@@ -201,6 +206,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method return the node in an specific location
+     * 
      * @param index position of the node to extract
      * @return the node on the location or null if the location is invalid
      */
@@ -208,7 +214,6 @@ public class LinkedList<T> implements Iterable<T> {
         int m = size / 2;
         int it;
         Node<T> F = null;
-        
 
         if (index <= m) {
             F = head;
@@ -233,13 +238,15 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method returns the index of an specific value
+     * 
      * @param data the value to be searched
-     * @return the index of the node where the value is stored, or -1 if it isn't found
+     * @return the index of the node where the value is stored, or -1 if it isn't
+     *         found
      */
     public int indexOf(T data) {
 
         type = data.getClass().getName();
-        
+
         Node<T> sHead = head;
         int index = 0;
 
@@ -254,9 +261,10 @@ public class LinkedList<T> implements Iterable<T> {
         return -1;
 
     }
-    
+
     /**
      * Method return a boolean indicating if the list is empty
+     * 
      * @return boolean
      */
     public boolean isEmpty() {
@@ -268,9 +276,11 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method remove a node based on an specific value
+     * 
      * @param data data that the node to be deleted contains
      * @return boolean indicating if the node was deleted
-     * @throws Exception if the data type to be searched isn't the same as the linkedlist
+     * @throws Exception if the data type to be searched isn't the same as the
+     *                   linkedlist
      */
     public boolean remove(T data) throws Exception {
 
@@ -307,9 +317,10 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method removes a node based on its position
+     * 
      * @param index position of the node to be removed
      * @return boolean indicating if the node was removed
-     */   
+     */
     public T remove(int index) {
 
         if (index < size && index > -1) {
@@ -339,6 +350,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method returns the size of the linkedlist
+     * 
      * @return int the size of the linkedlist
      */
     public int size() {
@@ -377,24 +389,24 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method returns the head of the linkedlist
+     * 
      * @return Node<T> the head of the linked list
      */
     public Node<T> head() {
         return head;
     }
 
-     /**
+    /**
      * Method returns the tail of the linkedlist
+     * 
      * @return Node<T> the tail of the linked list
      */
     public Node<T> tail() {
         return tail;
     }
 
-    
     public Iterator<T> iterator() {
-        // TODO Auto-generated method stub
-        return null;
+        return new LinkedListIterator<T>(this);
     }
 
 }

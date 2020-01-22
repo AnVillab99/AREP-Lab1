@@ -63,13 +63,11 @@ public class LinkedList<T> {
 
     }
 
-    public void clear() {
-        while (!(tail == null || head == null)) {
-            removeTail();
-        }
+    public void clear() {        
         head = null;
         tail = null;
         size = 0;
+        System.gc();
 
     }
 

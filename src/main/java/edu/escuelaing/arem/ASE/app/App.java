@@ -15,11 +15,15 @@ public class App {
     public static void main(String[] args) throws Exception {
         LinkedList<Double> l1 = makeTest("cases\\test1.txt");
         LinkedList<Double> l2 = makeTest("cases\\test2.txt");
-        NumberFormat formatter = new DecimalFormat("#0.00");      
-        System.out.println("Mean Test Case 1: " + (mean(l1)));
-        System.out.println("Mean Test Case 2: " + formatter.format(mean(l2)));
-        System.out.println("Standard Deviation Test Case 1: " + formatter.format(stdDev(l1)));
-        System.out.println("Standard Deviation Test Case 2: " + formatter.format(stdDev(l2)));
+        NumberFormat format = new DecimalFormat("#0.00");      
+        Iterator<Double> it1 = l2.iterator();
+        Iterator<Double> it2 = l2.iterator();
+        Double m1=mean(l1,it1);
+        Double m2= mean(l2,it2);
+        System.out.println("Mean Test 1: " + m1);        
+        System.out.println("Standard Deviation Test 1: " + format.format(stdDev(l1,it1,m1)));
+        System.out.println("Mean Test 2: " + m2);
+        System.out.println("Standard Deviation Test 2: " + format.format(stdDev(l2,it2,m2)));
     }
 
     public static LinkedList<Double> makeTest(String path) throws Exception {
@@ -38,24 +42,22 @@ public class App {
         return l;
     }
 
-    public static Double mean(LinkedList<Double> l) {
+    public static Double mean(LinkedList<Double> l, Iterator<Double> it) {
         Double suma = 0.0;
-        Iterator<Double> iterator = l.iterator();
         Double data;
-        while (iterator.hasNext()) {
-            data = iterator.next();
+        while (it.hasNext()) {
+            data = it.next();
             suma += data;
         }
         return suma / l.size();
     }
 
-    public static Double stdDev(LinkedList<Double> l) {
-        Double mean = mean(l);
-        Double sum = 0.0;
-        Iterator<Double> iterator = l.iterator();
+    public static Double stdDev(LinkedList<Double> l, Iterator<Double> it, Double m) {
+        
+        Double sum = 0.0;        
         Double val;
-        while (iterator.hasNext()) {
-            val = iterator.next() - mean;
+        while (it.hasNext()) {
+            val = it.next() - m;
             sum += val * val;
         }
         sum /= l.size() - 1;

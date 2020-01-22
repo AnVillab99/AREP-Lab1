@@ -1,6 +1,7 @@
 package edu.escuelaing.arem.ASE.app;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -19,6 +20,14 @@ public class LinkedListTest {
 				&& l.tail().getValue() == 2.3);
 
 	}
+
+	@Test
+	public void debeAgregarLosElementosDeUnArrayALaLinkedList(){
+		Double [] d ={2.3,2.5,2.6,3.2};
+		LinkedList<Double> l = new LinkedList<Double>(d);
+		assertTrue(l.size()==4 && l.head().getValue()==2.3 && l.tail().getValue()==3.2);
+	}
+
 
 	@Test
 	public void seDebePoderAgregarUnValoraLaLinkedList() {

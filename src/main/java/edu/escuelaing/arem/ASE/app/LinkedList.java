@@ -11,7 +11,6 @@ public class LinkedList<T> implements Iterable<T> {
     private Node<T> head;
     private Node<T> tail;
     private int size;
-    private String type;
 
     // private ArrayList<Node> lista=new ArrayList<Node>();
     /**
@@ -27,7 +26,6 @@ public class LinkedList<T> implements Iterable<T> {
      * @param data the value of the first node
      */
     public LinkedList(T data) {
-        type = data.getClass().getName();
         Node<T> n = new Node<T>(data, null, null);
         head = n;
         tail = n;
@@ -40,25 +38,24 @@ public class LinkedList<T> implements Iterable<T> {
      * @param dat array of data T
      */
     public LinkedList(T[] dat) {
-
-        type = dat.getClass().getName();
-
         Node<T> pre = null;
         Node<T> nex = null;
         int s = 0;
         for (T x : dat) {
             Node<T> n = new Node<T>(x, nex, pre);
+
             if (s == 0) {
                 head = n;
             }
             if (!(s == 0)) {
                 pre.setNext(n);
             }
+            s++;
+
             pre = n;
             if (s == dat.length) {
                 tail = n;
             }
-            s++;
 
         }
 
@@ -77,7 +74,6 @@ public class LinkedList<T> implements Iterable<T> {
 
         if (size == 0) {
 
-            type = data.getClass().getName();
             head = n;
         } else {
             getNode(size - 1).setNext(n);
@@ -95,15 +91,19 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param index poscision where to add the data
      * @param data  T to be added
+     * @throws Exception if the index is out of range
      */
-    public void add(int index, T data) {
+    public void add(int index, T data) throws Exception {
+        if (!(index < 0 || index >= size)) {
 
-        Node<T> Iprev = getNode(index - 1);
-        Node<T> Inext = getNode(index);
-        Node<T> n = new Node<T>(data, Inext, Iprev);
-        Iprev.setNext(n);
-        Inext.setPrev(n);
-        size++;
+            Node<T> Iprev = getNode(index - 1);
+            Node<T> Inext = getNode(index);
+            Node<T> n = new Node<T>(data, Inext, Iprev);
+            Iprev.setNext(n);
+            Inext.setPrev(n);
+            size++;
+        } else
+            throw new Exception("Index is out of range");
     }
 
     /**
@@ -157,20 +157,15 @@ public class LinkedList<T> implements Iterable<T> {
      */
     public boolean contains(T data) {
 
-        if (type == data.getClass().getName()) {
+        Node<T> sHead = head;
+        while (sHead.getNext() != null) {
+            if (sHead.getNext().getValue().equals(data)) {
+                return true;
+            } else
+                sHead = sHead.getNext();
 
-            Node<T> sHead = head;
-            while (sHead.getNext() != null) {
-                if (sHead.getNext().getValue().equals(data)) {
-                    return true;
-                } else
-                    sHead = sHead.getNext();
-
-            }
-            return false;
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -178,10 +173,11 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param index int that indicates which value to return
      * @return T or null if the index is wrong
+     * @throws Exception If the index is out of range
      */
-    public T get(int index) {
+    public T get(int index) throws Exception {
         if (index >= size || index < 0) {
-            return null;
+            throw new Exception("Index is out of range");
         } else {
             Node<T> retornar = getNode(index);
             return retornar.getValue();
@@ -193,30 +189,35 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param index position of the node to extract
      * @return the node on the location or null if the location is invalid
+     * @throws Exception If the index is out of range
      */
-    private Node<T> getNode(int index) {
-        int m = size / 2;
-        int it;
-        Node<T> F = null;
-
-        if (index <= m) {
-            F = head;
-            it = 0;
-            while (it < index) {
-                F = F.getNext();
-                it++;
-            }
-
+    private Node<T> getNode(int index) throws Exception {
+        if (index >= size || index < 0) {
+            throw new Exception("Index is out of range");
         } else {
-            it = size - 1;
-            F = tail;
-            while (it > index) {
-                F = F.getPrev();
-                it--;
-            }
+            int m = size / 2;
+            int it;
+            Node<T> F = null;
 
+            if (index <= m) {
+                F = head;
+                it = 0;
+                while (it < index) {
+                    F = F.getNext();
+                    it++;
+                }
+
+            } else {
+                it = size - 1;
+                F = tail;
+                while (it > index) {
+                    F = F.getPrev();
+                    it--;
+                }
+
+            }
+            return F;
         }
-        return F;
 
     }
 
@@ -228,8 +229,6 @@ public class LinkedList<T> implements Iterable<T> {
      *         found
      */
     public int indexOf(T data) {
-
-        type = data.getClass().getName();
 
         Node<T> sHead = head;
         int index = 0;
@@ -263,34 +262,41 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param data data that the node to be deleted contains
      * @return boolean indicating if the node was deleted
+     * @throws Exception If the list is empty
      */
     public boolean remove(T data) throws Exception {
+        if (!(size == 0)) {
 
-        int exist = indexOf(data);
-        if (exist != (-1)) {
+            int exist = indexOf(data);
 
-            Node<T> Iprev = getNode(exist).getPrev();
-            Node<T> Inext = getNode(exist).getNext();
-            Node<T> n = getNode(exist);
+            if (exist != (-1)) {
 
-            if (exist == size - 1) {
-                tail = Iprev;
-                Iprev.setNext(Inext);
+                Node<T> Iprev = getNode(exist).getPrev();
+                Node<T> Inext = getNode(exist).getNext();
+                Node<T> n = getNode(exist);
 
-            } else if (exist == 0) {
-                head = Inext;
-                Inext.setPrev(Iprev);
+                if (exist == size - 1) {
+                    tail = Iprev;
+                    Iprev.setNext(Inext);
 
-            } else {
-                Iprev.setNext(Inext);
-                Inext.setPrev(Iprev);
+                } else if (exist == 0) {
+                    head = Inext;
+                    Inext.setPrev(Iprev);
+
+                } else {
+                    Iprev.setNext(Inext);
+                    Inext.setPrev(Iprev);
+                }
+                n.delete();
+                n = null;
+                return true;
+
             }
-            n.delete();
-            n = null;
-            return true;
-
+            return false;
         }
-        return false;
+
+        else
+            throw new Exception(" No element found");
 
     }
 
@@ -299,8 +305,16 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param index position of the node to be removed
      * @return boolean indicating if the node was removed
+     * @throws Exception If the index is out of range
+     * @throws Exception If the list is empty
      */
-    public T remove(int index) {
+    public T remove(int index) throws Exception {
+
+        if (index >= size || index < 0) {
+            throw new Exception("Index is out of range");
+        } else if (size == 0) {
+            throw new Exception(" No element found");
+        }
 
         if (index < size && index > -1) {
             Node<T> Iprev = getNode(index).getPrev();
@@ -338,8 +352,13 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method remove the head of the linkedlist
+     * 
+     * @throws Exception If the ist is empty
      */
-    public void removeHead() {
+    public void removeHead() throws Exception {
+        if (size == 0) {
+            throw new Exception(" No element found");
+        }
 
         Node<T> nHead = head.getNext();
         nHead.setPrev(null);
@@ -351,8 +370,13 @@ public class LinkedList<T> implements Iterable<T> {
 
     /**
      * Method removes the tail of the linkedlist
+     * 
+     * @throws Exception If the ist is empty
      */
-    public void removeTail() {
+    public void removeTail() throws Exception {
+        if (size == 0) {
+            throw new Exception(" No element found");
+        }
         Node<T> nTail = tail.getPrev();
         if (!(nTail == null)) {
             nTail.setNext(null);

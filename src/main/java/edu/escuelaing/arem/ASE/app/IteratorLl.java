@@ -2,7 +2,7 @@ package edu.escuelaing.arem.ASE.app;
 
 import java.util.Iterator;
 
-public class LinkedListIterator<T> implements Iterator<T> {
+public class IteratorLl<T> implements Iterator<T> {
 
     Node<T> now;
 
@@ -10,7 +10,7 @@ public class LinkedListIterator<T> implements Iterator<T> {
      * Creates a LinkedListItereator based on a LinkedList
      * @param l linkedlist to get the iterator from
      */
-    public LinkedListIterator(LinkedList<T> l) {
+    public IteratorLl(LinkedList<T> l) {
         now = l.head();
     }
     

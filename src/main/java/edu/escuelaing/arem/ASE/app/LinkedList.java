@@ -70,31 +70,24 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param data T elemtn to add
      * @return boolean indicating if it was added
-     * @throws Exception if the data type added doesn't match with the linkedlist
-     *                   data type
      */
     public boolean add(T data) throws Exception {
 
-        if (type == data.getClass().getName()) {
+        Node<T> n = new Node<T>(data, null, tail);
 
-            Node<T> n = new Node<T>(data, null, tail);
+        if (size == 0) {
 
-            if (size == 0) {
-
-                type = data.getClass().getName();
-                head = n;
-            } else {
-                getNode(size - 1).setNext(n);
-                n.setPrev(tail);
-
-            }
-            tail = n;
-            size++;
-
-            return true;
+            type = data.getClass().getName();
+            head = n;
         } else {
-            throw new Exception("Data type is not compatible with curretn LinkedList");
+            getNode(size - 1).setNext(n);
+            n.setPrev(tail);
+
         }
+        tail = n;
+        size++;
+
+        return true;
     }
 
     /**
@@ -102,21 +95,15 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param index poscision where to add the data
      * @param data  T to be added
-     * @throws Exception if the data type added doesn't match with the linkedlist
-     *                   data type
      */
-    public void add(int index, T data) throws Exception {
-        if (!(index < 0 || index >= size || type == data.getClass().getName())) {
-            Node<T> Iprev = getNode(index - 1);
-            Node<T> Inext = getNode(index);
-            Node<T> n = new Node<T>(data, Inext, Iprev);
-            Iprev.setNext(n);
-            Inext.setPrev(n);
-            size++;
-        } else {
-            throw new Exception("Data type is not compatible with curretn LinkedList");
-        }
+    public void add(int index, T data) {
 
+        Node<T> Iprev = getNode(index - 1);
+        Node<T> Inext = getNode(index);
+        Node<T> n = new Node<T>(data, Inext, Iprev);
+        Iprev.setNext(n);
+        Inext.setPrev(n);
+        size++;
     }
 
     /**
@@ -124,34 +111,31 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param dat T data array
      * @return boolean indicating if the array was added
-     * @throws Exception if the data type added doesn't match with the linkedlist
-     *                   data type
+     * 
      */
-    public boolean addAll(T[] dat) throws Exception {
-        if (type == dat.getClass().getName()) {
+    public boolean addAll(T[] dat) {
 
-            Node<T> pre = tail;
-            Node<T> nex = null;
-            int s = size;
-            for (T x : dat) {
-                Node<T> n = new Node<T>(x, nex, pre);
-                if (s == 0) {
-                    head = n;
-                }
-                if (!(s == 0)) {
-                    pre.setNext(n);
-                }
-                pre = n;
-                if (s == dat.length) {
-                    tail = n;
-                }
-                s++;
+        Node<T> pre = tail;
+        Node<T> nex = null;
+        int s = size;
+        for (T x : dat) {
+            Node<T> n = new Node<T>(x, nex, pre);
+            if (s == 0) {
+                head = n;
             }
+            if (!(s == 0)) {
+                pre.setNext(n);
+            }
+            pre = n;
+            if (s == dat.length) {
+                tail = n;
+            }
+            s++;
+        }
 
-            size = s;
-            return true;
-        } else
-            throw new Exception("Data type is not compatible with curretn LinkedList");
+        size = s;
+        return true;
+
     }
 
     /**
@@ -279,40 +263,35 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param data data that the node to be deleted contains
      * @return boolean indicating if the node was deleted
-     * @throws Exception if the data type to be searched isn't the same as the
-     *                   linkedlist
      */
     public boolean remove(T data) throws Exception {
 
-        if (type == data.getClass().getName()) {
+        int exist = indexOf(data);
+        if (exist != (-1)) {
 
-            int exist = indexOf(data);
-            if (exist != (-1)) {
+            Node<T> Iprev = getNode(exist).getPrev();
+            Node<T> Inext = getNode(exist).getNext();
+            Node<T> n = getNode(exist);
 
-                Node<T> Iprev = getNode(exist).getPrev();
-                Node<T> Inext = getNode(exist).getNext();
-                Node<T> n = getNode(exist);
+            if (exist == size - 1) {
+                tail = Iprev;
+                Iprev.setNext(Inext);
 
-                if (exist == size - 1) {
-                    tail = Iprev;
-                    Iprev.setNext(Inext);
+            } else if (exist == 0) {
+                head = Inext;
+                Inext.setPrev(Iprev);
 
-                } else if (exist == 0) {
-                    head = Inext;
-                    Inext.setPrev(Iprev);
-
-                } else {
-                    Iprev.setNext(Inext);
-                    Inext.setPrev(Iprev);
-                }
-                n.delete();
-                n = null;
-                return true;
-
+            } else {
+                Iprev.setNext(Inext);
+                Inext.setPrev(Iprev);
             }
-            return false;
-        } else
-            throw new Exception("Data type is not compatible with curretn LinkedList");
+            n.delete();
+            n = null;
+            return true;
+
+        }
+        return false;
+
     }
 
     /**
@@ -406,7 +385,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public Iterator<T> iterator() {
-        return new LinkedListIterator<T>(this);
+        return new IteratorLl<T>(this);
     }
 
 }

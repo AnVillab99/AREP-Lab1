@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class LinkedListTest {
-/*
+
 	@Test
 	public void seDebeCrearUnaLinkedListVacia() {
 		LinkedList<Double> l = new LinkedList<Double> ();
@@ -82,16 +82,14 @@ public class LinkedListTest {
 		LinkedList<Double> l2 = new LinkedList<Double> (2.3);
 		assertTrue(l.isEmpty() && !(l2.isEmpty()));
 	}
-*/
+
 	@Test
-	public void testRemoveT() {
+	public void debeRemoverEnBaseAElValorDelNodo() {
 		LinkedList<Double> l = new LinkedList<Double> ();
 		l.add(2.3);
 		l.add(2.2);
 		l.add(2.4);
 		l.remove(2.4);
-		l.head();
-		System.out.println("wegweg");
 		assertTrue(l.tail().getValue()==2.2);
 	}
 

@@ -10,33 +10,41 @@ import org.junit.Test;
 public class NodeTest {
 
 	@Test
-	public void testNode() {
+	public void debeCrearNodoConValorYNodosAdyacentesDados() {
 		Node<Double> n = new Node<Double> (2.3,null,null);
-		assertTrue(n.getValue()==2.3);
+		Node<Double> n1 = new Node<Double> (2.2,null,null);
+		Node<Double> n2 = new Node<Double> (2.0,n1,n);
+		
+		assertTrue(n2.getValue()==2.0 && n2.getNext().getValue()==2.2 && n2.getPrev().getValue()==2.3);
+	}
+
+	public void debeCrearNodoVacio() {
+		Node<Double> n = new Node<Double> ();
+		assertTrue(n!=null);
 	}
 
 	@Test
-	public void testNodeT() {
+	public void debeCrearNodoSoloConValor() {
 		Node<Double> n = new Node<Double> (2.3);
 		assertTrue(n.getValue()==2.3);
 		
 	}
 
 	@Test
-	public void testGetValue() {
+	public void debeDevolverElValorDelNodo() {
 		Node<Double> n = new Node<Double> (2.3);
 		assertTrue(n.getValue()==2.3);
 	}
 
 	@Test
-	public void testSetValue() {
+	public void debeCambiarElValorDelNodo() {
 		Node<Double> n = new Node<Double> (-2.5);
 		n.setValue(2.3);
 		assertTrue(n.getValue()==2.3);
 	}
 
 	@Test
-	public void testGetNext() {
+	public void debeDevolverElSiguienteNodo() {
 		Node<Double> n1 = new Node<Double> (2.3);
 		Node<Double> n2 = new Node<Double> (2.3);
 		Node<Double> n = new Node<Double> (2.3,n1,n2);		
@@ -44,7 +52,7 @@ public class NodeTest {
 	}
 
 	@Test
-	public void testSetNext() {
+	public void debeSetElSiguienteNodo() {
 		Node<Double> n1 = new Node<Double> (2.3);
 		Node<Double> n = new Node<Double> (2.2,null,null);
 		n.setNext(n1);		
@@ -52,7 +60,7 @@ public class NodeTest {
 	}
 
 	@Test
-	public void testGetPrev() {
+	public void debeDevolverElAnteriorNodo() {
 		Node<Double> n1 = new Node<Double> (2.3);
 		Node<Double> n2 = new Node<Double> (2.1);
 		Node<Double> n = new Node<Double> (2.2,n1,n2);		
@@ -60,7 +68,7 @@ public class NodeTest {
 	}
 
 	@Test
-	public void testSetPrev() {
+	public void debeSetElAnteriorNodo() {
 		Node<Double> n2 = new Node<Double> (2.3);
 		Node<Double> n = new Node<Double> (2.2,null,null);
 		n.setPrev(n2);		
@@ -68,7 +76,7 @@ public class NodeTest {
 	}
 
 	@Test
-	public void testNext() {
+	public void debeDevolverElSiguienteNodo2() {
 		Node<Double> n1 = new Node<Double> (2.3);
 		Node<Double> n2 = new Node<Double> (2.1);
 		Node<Double> n = new Node<Double> (2.2,n1,n2);		
@@ -76,7 +84,7 @@ public class NodeTest {
 	}
 
 	@Test
-	public void testPrev() {
+	public void debeDevolverElAnteriorNodo2() {
 		Node<Double> n1 = new Node<Double> (2.3);
 		Node<Double> n2 = new Node<Double> (2.1);
 		Node<Double> n = new Node<Double> (2.2,n1,n2);		
@@ -84,7 +92,7 @@ public class NodeTest {
 	}
 
 	@Test
-	public void testDelete() {
+	public void debeVaciarVaciarElNodo() {
 		Node<Double> n1 = new Node<Double> (2.3);
 		Node<Double> n2 = new Node<Double> (2.1);
 		Node<Double> n = new Node<Double> (2.2,n1,n2);

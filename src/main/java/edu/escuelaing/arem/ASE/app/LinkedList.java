@@ -1,20 +1,28 @@
 package edu.escuelaing.arem.ASE.app;
 
 /**
- * LinkedList
+ * 
+ * LinkedList class
+ * Is a list that consist of multiple Nodes connected.
  */
 public class LinkedList<T> {
+
     private Node<T> head;
     private Node<T> tail;
     private int size;
     private String type;
 
     // private ArrayList<Node> lista=new ArrayList<Node>();
-
+    /**
+     * Empty contructor
+     */
     public LinkedList() {
         size = 0;
     }
-
+    /**
+     * 
+     * @param data
+     */
     public LinkedList(T data) {
         type = data.getClass().getName();
         Node<T> n = new Node<T>(data, null, null);
@@ -27,11 +35,11 @@ public class LinkedList<T> {
         Node<T> n = new Node<T>(data, null, tail);
 
         if (size == 0) {
-            
+
             type = data.getClass().getName();
             head = n;
         } else {
-            getNode(size-1).setNext(n);
+            getNode(size - 1).setNext(n);
             n.setPrev(tail);
 
         }
@@ -56,12 +64,12 @@ public class LinkedList<T> {
     }
 
     public void clear() {
-        while(!(tail==null || head ==null)){
+        while (!(tail == null || head == null)) {
             removeTail();
         }
         head = null;
         tail = null;
-        size=0;
+        size = 0;
 
     }
 
@@ -115,11 +123,9 @@ public class LinkedList<T> {
     public int indexOf(T data) {
         Node<T> sHead = head;
         int index = 0;
-        while (sHead.getNext() != null) {
-            System.out.println(sHead.getValue());
-            System.out.println("la data"+data);
+
+        while (index < size) {
             if (sHead.getValue().equals(data)) {
-                System.out.println("index of "+index);
                 return index;
             } else
                 sHead = sHead.getNext();
@@ -139,14 +145,24 @@ public class LinkedList<T> {
 
     public boolean remove(T data) {
         int exist = indexOf(data);
-        if (exist == (-1)) {
-            System.out.println("lo hallo");
-            System.out.println(exist);
+        if (exist != (-1)) {
+
             Node<T> Iprev = getNode(exist).getPrev();
             Node<T> Inext = getNode(exist).getNext();
             Node<T> n = getNode(exist);
-            Iprev.setNext(Inext);
-            Inext.setPrev(Iprev);
+
+            if (exist == size - 1) {
+                tail = Iprev;
+                Iprev.setNext(Inext);
+
+            } else if (exist == 0) {
+                head = Inext;
+                Inext.setPrev(Iprev);
+
+            } else {
+                Iprev.setNext(Inext);
+                Inext.setPrev(Iprev);
+            }
             n.delete();
             n = null;
             return true;
@@ -161,8 +177,18 @@ public class LinkedList<T> {
             Node<T> Iprev = getNode(index).getPrev();
             Node<T> Inext = getNode(index).getNext();
             Node<T> n = getNode(index);
-            Iprev.setNext(Inext);
-            Inext.setPrev(Iprev);
+            if (index == size - 1) {
+                tail = Iprev;
+                Iprev.setNext(Inext);
+
+            } else if (index == 0) {
+                head = Inext;
+                Inext.setPrev(Iprev);
+
+            } else {
+                Iprev.setNext(Inext);
+                Inext.setPrev(Iprev);
+            }
             Node<T> deleted = n;
             n = null;
 
@@ -188,15 +214,14 @@ public class LinkedList<T> {
 
     public void removeTail() {
         Node<T> nTail = tail.getPrev();
-        if(!(nTail==null)){
-        nTail.setNext(null);
-        tail.delete();
-        tail = null;
-        tail = nTail;
-        }
-        else{
-            head=null;
-            tail=null;
+        if (!(nTail == null)) {
+            nTail.setNext(null);
+            tail.delete();
+            tail = null;
+            tail = nTail;
+        } else {
+            head = null;
+            tail = null;
         }
 
     }

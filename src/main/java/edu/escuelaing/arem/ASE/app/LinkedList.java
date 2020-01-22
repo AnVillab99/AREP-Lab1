@@ -67,8 +67,9 @@ public class LinkedList<T> implements Iterable<T> {
      * 
      * @param data T elemtn to add
      * @return boolean indicating if it was added
+ 
      */
-    public boolean add(T data) throws Exception {
+    public boolean add(T data)  {
 
         Node<T> n = new Node<T>(data, null, tail);
 
@@ -76,7 +77,7 @@ public class LinkedList<T> implements Iterable<T> {
 
             head = n;
         } else {
-            getNode(size - 1).setNext(n);
+            tail.setNext(n);
             n.setPrev(tail);
 
         }
@@ -393,7 +394,7 @@ public class LinkedList<T> implements Iterable<T> {
     /**
      * Method returns the head of the linkedlist
      * 
-     * @return Node<T> the head of the linked list
+     * @return Node the head of the linked list
      */
     public Node<T> head() {
         return head;
@@ -402,7 +403,7 @@ public class LinkedList<T> implements Iterable<T> {
     /**
      * Method returns the tail of the linkedlist
      * 
-     * @return Node<T> the tail of the linked list
+     * @return Node the tail of the linked list
      */
     public Node<T> tail() {
         return tail;

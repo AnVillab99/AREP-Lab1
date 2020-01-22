@@ -2,12 +2,16 @@ package edu.escuelaing.arem.ASE.app;
 
 import java.util.Iterator;
 
+/**
+ * Creates an Itereator for the given linkedlist
+ * @param <T> type of value of the list
+ */
 public class IteratorLl<T> implements Iterator<T> {
 
     Node<T> now;
 
     /**
-     * Creates a LinkedListItereator based on a LinkedList
+     * Creates an Itereator for the given linkedlist
      * @param l linkedlist to get the iterator from
      */
     public IteratorLl(LinkedList<T> l) {
@@ -15,8 +19,8 @@ public class IteratorLl<T> implements Iterator<T> {
     }
     
     /**
-     * Method checks if the itereator has a next node
-     * @return boolean indicating if the curretn node has a next one.
+     * Method checks if the itereator has a next node.
+     * @return boolean indicating if the current node has a next node.
      */
     public boolean hasNext() {
         boolean t=true;
@@ -26,7 +30,7 @@ public class IteratorLl<T> implements Iterator<T> {
     }
 
     /**
-     * method replace the curretn iterator node with the next one 
+     * method replace the current iterator node with the next one and returns the value of the current one 
      * @return T returns the value of the prior iterator node
      */
     public T next() {

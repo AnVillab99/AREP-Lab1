@@ -44,7 +44,7 @@ public class Node<T> {
     /**
      * Returns the main value of the node
      * 
-     * @return
+     * @return value of the node
      */
     public T getValue() {
         return value;

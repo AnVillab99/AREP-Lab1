@@ -23,11 +23,11 @@ For maven you download the zip archive from the maven page and unpack it on a sp
 ## Running the tests
 
 The test cases :
-![test](https://github.com/AnVillab99/AREP-Lab1/tree/blob/master/resources/img/testcase.PNG)
+![test](https://github.com/AnVillab99/AREP-Lab1/blob/master/resources/img/testcase.PNG)
 The expected results:
-![expected](https://github.com/AnVillab99/AREP-Lab1/blob/tree/master/resources/img/expected.PNG)
+![expected](https://github.com/AnVillab99/AREP-Lab1/blob/master/resources/img/expected.PNG)
 The real results:
-![Result](https://github.com/AnVillab99/AREP-Lab1/blob/tree/master/resources/img/results.PNG)
+![Result](https://github.com/AnVillab99/AREP-Lab1/blob/master/resources/img/results.PNG)
 
 ## Design
 

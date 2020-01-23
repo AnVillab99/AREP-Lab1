@@ -23,10 +23,10 @@ For maven you download the zip archive from the maven page and unpack it on a sp
 ## Running the tests
 
 The test cases and the expected results:
-![testResult](https://github.com/AnVillab99/AREP-Lab1/resources/img/expected.png)
+![testResult](https://github.com/AnVillab99/AREP-Lab1/tree/master/resources/img/expected.png)
 
 The real results:
-![testResult](https://github.com/AnVillab99/AREP-Lab1/resources/img/results.png)
+![testResult](https://github.com/AnVillab99/AREP-Lab1/tree/master/resources/img/results.png)
 
 ## Design
 

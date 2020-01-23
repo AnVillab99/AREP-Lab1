@@ -1,8 +1,8 @@
 # AREP Lab1
 
 This laboratory intends for the students to rememeber the knowledge of git and maven.
-In this laboratory we implement our own version of the java linked list, and use it to calculate the mean and the standard deviation of a given set of doubles thata are on a separated txt.
-To achieve this we also implement our own verison of Nodes that a specific value and know the next and the prior nodes.
+In this laboratory we need to return the mean and the standard deviation of a given array of number. To achieve this i implemented my own version of the java linked list, and use it to calculate the mean and the standard deviation of a given set of numbers, stored on my own implememntation of Nodes.
+
 
 ## Getting Started
 
@@ -22,14 +22,18 @@ For maven you download the zip archive from the maven page and unpack it on a sp
 
 ## Running the tests
 
-To run the tests open any ide and go to the test folder, there you run the test.
+The test cases :
+![test](https://github.com/AnVillab99/AREP-Lab1/blob/master/resources/img/testcase.png)
 
-### Break down into end to end tests
+The expected results:
+![expected](https://github.com/AnVillab99/AREP-Lab1/blob/master/resources/img/expected.png)
 
-These tests test from the cronstruction of the nodes and the linked list, to the setting of the parameters of the nodes, the adding and removing of nodes from the linked list and obtaining values on specific indexes on the linked list
+The real results:
+![Result](https://github.com/AnVillab99/AREP-Lab1/blob/master/resources/img/results.PNG)
 
+## Design
 
-
+On the emebeded pdf document is a description of the design of this project 
 
 
 ## Built With
@@ -49,7 +53,7 @@ For the versions available, see the [tags on this repository](https://github.com
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is under GNU General Public License - see [LICENSE](https://github.com/AnVillab99/AREP-Lab1/blob/master/LICENSE) to more info.
 
 ## Acknowledgments
 

@@ -35,6 +35,17 @@ The real results:
 
 On the emebeded pdf document is a description of the design of this project 
 
+## Running
+ First you need to comile the project 
+ > mvn package
+ Then to run the tests
+ > mvn test 
+ To run the project 
+ > mvn exec:java -D "edu.escuelaing.arem.ASE.app.App"
+ 
+ To generate the java doc
+ > mvn javadoc:javadoc
+
 
 ## Built With
 

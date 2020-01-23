@@ -36,10 +36,6 @@ The real results:
 On the emebeded pdf document is a description of the design of this project 
 
 
-
-
-
-
 ## Built With
 
 * [Maven](https://maven.apache.org/) - Dependency Management
